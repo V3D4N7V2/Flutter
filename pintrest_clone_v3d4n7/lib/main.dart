@@ -70,8 +70,14 @@ class _MyHomePageState extends State<MyHomePage> {
           //title: Text(widget.title),
           title: Text("Pinterest Clone"),
           actions: <Widget>[
-            getButtons(child: Icon(Icons.menu), onpresssed: onPressed),
-            getButtons(child: Icon(Icons.home_outlined), onpresssed: onPressed),
+            getButtons(
+                child: Icon(Icons.menu), onpresssed: onPressed, minWidth: 50),
+            getButtons(
+                child: Icon(Icons.home_outlined),
+                onpresssed: onPressed,
+                minWidth: 50,
+                //color: Colors.red ,
+                hoverColor: Colors.red),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -98,8 +104,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            getButtons(child: Text("Reset"), onpresssed: _resetCounter),
+            getButtons(
+                child: Icon(Icons.add_alert),
+                onpresssed: onPressed,
+                minWidth: 50,
+                textColor: Colors.red,
+                hoverColor: Colors.red),
+            //getButtons(child: Text("Reset"), onpresssed: _resetCounter),
             getButtons(child: Text("Login"), onpresssed: onPressed),
+            getButtons(
+                child: Icon(Icons.person),
+                onpresssed: onPressed,
+                minWidth: 50,
+                textColor: Colors.grey,
+                hoverColor: Colors.grey),
           ]),
 
       body: Padding(
@@ -109,8 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisCount: 4,
           itemCount: _counter,
           itemBuilder: (BuildContext context, int index) =>
-              new Container(child: new ImageBox()),
-          // new Container(child: new Text("Image Here")),
+              // new Container(child: new ImageBox()),
+              new Container(child: new Text("Image Here")),
           staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
@@ -120,16 +138,24 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Padding getButtons({child, onpresssed}) {
+  Padding getButtons(
+      {child,
+      onpresssed,
+      Color hoverTextColor,
+      Color hoverColor,
+      Color textColor,
+      Color color,
+      double minWidth}) {
     return Padding(
       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       // color: Color.fromRGBO(5, 5, 5, .5),
       padding: const EdgeInsets.all(8.0),
       child: HoverButton(
-        color: Colors.white,
-        hoverTextColor: Colors.white,
-        hoverColor: Colors.black,
-        textColor: Colors.black,
+        minWidth: minWidth,
+        color: color != null ? color : Colors.white,
+        hoverTextColor: hoverTextColor != null ? hoverTextColor : Colors.white,
+        hoverColor: hoverColor != null ? hoverColor : Colors.black,
+        textColor: textColor != null ? textColor : Colors.black,
         onpressed: onpresssed,
         child: child,
       ),
