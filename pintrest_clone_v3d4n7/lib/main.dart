@@ -127,8 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisCount: 4,
           itemCount: _counter,
           itemBuilder: (BuildContext context, int index) =>
-              // new Container(child: new ImageBox()),
-              new Container(child: new Text("Image Here")),
+              new Container(child: new ImageBox()),
+          // new Container(child: new Text("Image Here")),
           staggeredTileBuilder: (int index) => new StaggeredTile.fit(1),
           mainAxisSpacing: 4.0,
           crossAxisSpacing: 4.0,
