@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _scrollController = ScrollController();
     _scrollController.addListener(() {
-      print(_scrollController.position.maxScrollExtent);
+      //print(_scrollController.position.maxScrollExtent);
       if (_scrollController.position.maxScrollExtent -
               _scrollController.position.pixels <
           200) _incrementCounter();
@@ -330,27 +330,53 @@ class _ImageBoxState extends State<ImageBox> {
       offstage: this.offstage,
       child: Container(
         color: Color.fromRGBO(66, 66, 66, 0.5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            IconButton(
-                color: Colors.white,
-                icon: Icon(Icons.file_download),
-                onPressed: onPressed),
-            IconButton(
-                color: Colors.white,
-                icon: Icon(Icons.source_outlined),
-                onPressed: onPressed),
-            IconButton(
-                color: Colors.white,
-                icon: Icon(Icons.share),
-                onPressed: onPressed),
-            IconButton(
-                color: Colors.white,
-                icon: Icon(Icons.more_horiz_outlined),
-                onPressed: onPressed),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // IconButton(
+              //     color: Colors.white,
+              //     icon: Icon(Icons.file_download),
+              //     onPressed: onPressed),
+              // IconButton(
+              //     color: Colors.white,
+              //     icon: Icon(Icons.source_outlined),
+              //     onPressed: onPressed),
+              // IconButton(
+              //     color: Colors.white,
+              //     icon: Icon(Icons.share),
+              //     onPressed: onPressed),
+              // IconButton(
+              //     color: Colors.white,
+              //     icon: Icon(Icons.more_horiz_outlined),
+              //     onPressed: onPressed),
+
+              getButton(icon: Icon(Icons.file_download)),
+              getButton(icon: Icon(Icons.source_outlined)),
+              getButton(icon: Icon(Icons.share)),
+              getButton(icon: Icon(Icons.more_horiz_outlined)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  ClipOval getButton({Icon icon, onTap}) {
+    return ClipOval(
+      child: Material(
+        //color: Colors.grey[400], // button color
+        color: Color.fromRGBO(200, 200, 200, 0.75), // button color
+        child: InkWell(
+          splashColor: Colors.black, // inkwell color
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: icon,
+          ),
+          onTap: () {},
         ),
       ),
     );
