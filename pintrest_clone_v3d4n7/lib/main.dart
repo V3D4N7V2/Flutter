@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 50;
+  int _counter = 20;
   ScrollController _scrollController;
   void _incrementCounter() {
     setState(() {
@@ -333,10 +333,9 @@ class _ImageBoxState extends State<ImageBox> {
   ClipOval getButton({Icon icon, onTap}) {
     return ClipOval(
       child: Material(
-        //color: Colors.grey[400], // button color
-        color: Color.fromRGBO(200, 200, 200, 0.75), // button color
+        color: Color.fromRGBO(200, 200, 200, 0.75),
         child: InkWell(
-          splashColor: Colors.black, // inkwell color
+          splashColor: Colors.black,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: icon,
