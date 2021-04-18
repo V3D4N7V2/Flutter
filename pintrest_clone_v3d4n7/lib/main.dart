@@ -72,32 +72,34 @@ class _MyHomePageState extends State<MyHomePage> {
           //title: Text(widget.title),
           title: Text("Pinterest Clone"),
           actions: <Widget>[
-            Padding(
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              // color: Color.fromRGBO(5, 5, 5, .5),
-              padding: const EdgeInsets.all(8.0),
-              child: HoverButton(
-                color: Colors.white,
-                hoverTextColor: Colors.white,
-                hoverColor: Colors.black,
-                textColor: Colors.black,
-                onpressed: onPressed,
-                child: Icon(Icons.menu),
-              ),
-            ),
-            Padding(
-              // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              // color: Color.fromRGBO(5, 5, 5, .5),
-              padding: const EdgeInsets.all(8.0),
-              child: HoverButton(
-                color: Colors.white,
-                hoverTextColor: Colors.white,
-                hoverColor: Colors.black,
-                textColor: Colors.black,
-                onpressed: onPressed,
-                child: Icon(Icons.home_outlined),
-              ),
-            ),
+            // Padding(
+            //   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            //   // color: Color.fromRGBO(5, 5, 5, .5),
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: HoverButton(
+            //     color: Colors.white,
+            //     hoverTextColor: Colors.white,
+            //     hoverColor: Colors.black,
+            //     textColor: Colors.black,
+            //     onpressed: onPressed,
+            //     child: Icon(Icons.menu),
+            //   ),
+            // ),
+            getButtons(child: Icon(Icons.menu), onpresssed: onPressed),
+            getButtons(child: Icon(Icons.home_outlined), onpresssed: onPressed),
+            // Padding(
+            //   // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            //   // color: Color.fromRGBO(5, 5, 5, .5),
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: HoverButton(
+            //     color: Colors.white,
+            //     hoverTextColor: Colors.white,
+            //     hoverColor: Colors.black,
+            //     textColor: Colors.black,
+            //     onpressed: onPressed,
+            //     child: Icon(Icons.home_outlined),
+            //   ),
+            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -124,33 +126,35 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: HoverButton(
-                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                // color: Color.fromRGBO(5, 5, 5, .5),
-                color: Colors.white,
-                hoverTextColor: Colors.white,
-                hoverColor: Colors.black,
-                textColor: Colors.black,
-                onpressed: _resetCounter,
-                child: Text("Reset"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: HoverButton(
-                // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                // color: Color.fromRGBO(5, 5, 5, .5),
-                color: Colors.white,
-                hoverTextColor: Colors.white,
-                hoverColor: Colors.black,
-                textColor: Colors.black,
-                onpressed: onPressed,
-                // child: Text("More"),
-                child: Text("Login"),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: HoverButton(
+            //     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            //     // color: Color.fromRGBO(5, 5, 5, .5),
+            //     color: Colors.white,
+            //     hoverTextColor: Colors.white,
+            //     hoverColor: Colors.black,
+            //     textColor: Colors.black,
+            //     onpressed: _resetCounter,
+            //     child: Text("Reset"),
+            //   ),
+            // ),
+            getButtons(child: Text("Reset"), onpresssed: _resetCounter),
+            getButtons(child: Text("Login"), onpresssed: onPressed),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: HoverButton(
+            //     // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            //     // color: Color.fromRGBO(5, 5, 5, .5),
+            //     color: Colors.white,
+            //     hoverTextColor: Colors.white,
+            //     hoverColor: Colors.black,
+            //     textColor: Colors.black,
+            //     onpressed: onPressed,
+            //     // child: Text("More"),
+            //     child: Text("Login"),
+            //   ),
+            // ),
           ]),
 
       body: Padding(
@@ -168,6 +172,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       //floatingActionButton: FloatingActionButton(onPressed: _incrementCounter),
+    );
+  }
+
+  Padding getButtons({child, onpresssed}) {
+    return Padding(
+      // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      // color: Color.fromRGBO(5, 5, 5, .5),
+      padding: const EdgeInsets.all(8.0),
+      child: HoverButton(
+        color: Colors.white,
+        hoverTextColor: Colors.white,
+        hoverColor: Colors.black,
+        textColor: Colors.black,
+        onpressed: onpresssed,
+        child: child,
+      ),
     );
   }
 }
