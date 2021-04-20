@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ScrollController _scrollController;
   void _incrementCounter() {
     setState(() {
-      _counter = _counter + 20;
+      _counter = _counter + 10;
     });
   }
 
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //print(_scrollController.position.maxScrollExtent);
       if (_scrollController.position.maxScrollExtent -
               _scrollController.position.pixels <
-          200) _incrementCounter();
+          1000) _incrementCounter();
     });
   }
 
@@ -174,6 +174,7 @@ int temp = 0;
 int countGIF = 0;
 int offset = 0;
 int limit = 25;
+String key = "0GP56F9jkkSicSOYgX63TwO3V9uxM0O7";
 
 void incrementOffset() {
   offset = offset + limit;
@@ -190,7 +191,9 @@ int getCount() {
 Future<List<String>> fetchTrending(var test) async {
   if (test != null) return test;
   var response = await http.get(
-      "https://api.giphy.com/v1/gifs/trending?api_key=S2caek9KgSdfHo7OqPQwdV9POlLEgSs1&limit=" +
+      "https://api.giphy.com/v1/gifs/trending?api_key=" +
+          key +
+          "&limit=" +
           limit.toString() +
           "&rating=G&offset=" +
           offset.toString());
@@ -209,15 +212,17 @@ bool truefalse() {
   return random.nextBool();
 }
 
+Random random = Random();
+
 class _ImageBoxState extends State<ImageBox> {
   _ImageBoxState();
   var links;
   bool offstage = true;
   final bool gif = truefalse();
   final int count = getCount();
-
+  //String url ="https://picsum.photos/id/${random.nextInt(900) + 100}/${400 + 100 * (temp++ % 7).round()}/${600 + 100 * (temp % 5).round()}";
   String url =
-      "https://picsum.photos/${400 + 100 * (temp++ % 7).round()}/${600 + 100 * (temp % 5).round()}";
+      "https://picsum.photos/id/${random.nextInt(900) + 100}/${400 + 10 * random.nextInt(50)}/${600 + 10 * random.nextInt(50)}";
   //var imglink;
 
   void toggle(PointerEvent details) {
@@ -228,7 +233,7 @@ class _ImageBoxState extends State<ImageBox> {
 
   Widget build(BuildContext context) {
     final imglink = url.toString();
-    // print(url);
+    print(url);
     //print(imglink);
     return Container(
       child: MouseRegion(
@@ -345,10 +350,11 @@ class _ImageBoxState extends State<ImageBox> {
               //     icon: Icon(Icons.more_horiz_outlined),
               //     onPressed: onPressed),
 
-              getButton(icon: Icon(Icons.file_download)),
-              getButton(icon: Icon(Icons.source_outlined)),
-              getButton(icon: Icon(Icons.share)),
-              getButton(icon: Icon(Icons.more_horiz_outlined)),
+              getButton(icon: Icon(Icons.file_download), color: Colors.red),
+              getButton(icon: Icon(Icons.source_outlined), color: Colors.blue),
+              getButton(icon: Icon(Icons.share), color: Colors.amber),
+              getButton(
+                  icon: Icon(Icons.more_horiz_outlined), color: Colors.pink),
             ],
           ),
         ),
@@ -356,12 +362,12 @@ class _ImageBoxState extends State<ImageBox> {
     );
   }
 
-  ClipOval getButton({Icon icon, onTap}) {
+  ClipOval getButton({Icon icon, onTap, Color color}) {
     return ClipOval(
       child: Material(
         color: Color.fromRGBO(200, 200, 200, 0.75),
         child: InkWell(
-          splashColor: Colors.black,
+          splashColor: color != null ? color : Colors.black,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: icon,
