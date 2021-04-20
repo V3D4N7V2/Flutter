@@ -1,3 +1,8 @@
+//BT19CSE004
+//Vedant Ghuge
+//CSE A 4th Sem
+//Video Drive Link : https://drive.google.com/file/d/1yYka6CyB_ABNKfmBvmBZ0xJ8t9UqSHis/view?usp=sharing
+
 //import 'dart:developer';
 import 'dart:math';
 import 'dart:ui';
@@ -71,13 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text("Pinterest Clone"),
           actions: <Widget>[
             getButtons(
-                child: Icon(Icons.menu), onpresssed: onPressed, minWidth: 50),
+                child: Icon(Icons.menu),
+                onpresssed: onPressed,
+                minWidth: 50,
+                splashColor: Colors.lime),
             getButtons(
                 child: Icon(Icons.home_outlined),
                 onpresssed: onPressed,
                 minWidth: 50,
                 //color: Colors.red ,
-                hoverColor: Colors.red),
+                hoverColor: Colors.red,
+                splashColor: Colors.amber),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -109,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 onpresssed: onPressed,
                 minWidth: 50,
                 textColor: Colors.red,
-                hoverColor: Colors.red),
+                hoverColor: Colors.red,
+                splashColor: Colors.pink),
             //getButtons(child: Text("Reset"), onpresssed: _resetCounter),
             getButtons(child: Text("Login"), onpresssed: onPressed),
             getButtons(
@@ -117,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 onpresssed: onPressed,
                 minWidth: 50,
                 textColor: Colors.grey,
-                hoverColor: Colors.grey),
+                hoverColor: Colors.grey,
+                splashColor: Colors.teal),
           ]),
 
       body: Padding(
@@ -145,12 +156,14 @@ class _MyHomePageState extends State<MyHomePage> {
       Color hoverColor,
       Color textColor,
       Color color,
+      Color splashColor,
       double minWidth}) {
     return Padding(
       // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       // color: Color.fromRGBO(5, 5, 5, .5),
       padding: const EdgeInsets.all(8.0),
       child: HoverButton(
+        splashColor: splashColor != null ? splashColor : Colors.grey,
         minWidth: minWidth,
         color: color != null ? color : Colors.white,
         hoverTextColor: hoverTextColor != null ? hoverTextColor : Colors.white,
@@ -174,7 +187,8 @@ int temp = 0;
 int countGIF = 0;
 int offset = 0;
 int limit = 25;
-String key = "0GP56F9jkkSicSOYgX63TwO3V9uxM0O7";
+String key =
+    "0GP56F9jkkSicSOYgX63TwO3V9uxM0O7"; // limited use , not production level key
 
 void incrementOffset() {
   offset = offset + limit;
@@ -201,8 +215,8 @@ Future<List<String>> fetchTrending(var test) async {
   List<Map<String, dynamic>> images =
       parsed["data"].cast<Map<String, dynamic>>();
   return images.map<String>((image) {
-    return image["images"]["original"]["url"];
-    // return image["images"]["preview_gif"]["url"];
+    return image["images"]["original"]["url"]; // full resolution
+    // return image["images"]["preview_gif"]["url"]; //low resolution faster loads
   }).toList();
 }
 
